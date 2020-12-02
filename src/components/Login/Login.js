@@ -17,7 +17,7 @@ export default function Login() {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [loginMessage, setLoginMessage] = useState('');
     const [signUpDetails, setSignUpDetails] = useState();
-    const [isSignUpSuccess, setIsSignUpSuccess] = useState(true);
+    const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
     const [signUpMessage, setSignUpMessage] = useState('');
 
     useEffect(() => {
@@ -35,9 +35,7 @@ export default function Login() {
 
     useEffect(() => {
         if (signUpDetails != undefined) {
-            if (!signUpDetails.isAdded) {
-                setIsSignUpSuccess(false);
-            }
+            setIsSignUpSuccess(true);
             setSignUpMessage(signUpDetails.message);
         }
     }, [signUpDetails]);
@@ -86,7 +84,7 @@ export default function Login() {
     return (
         <section>
             <div>
-                {isSignUpSuccess ? <></>:
+                {!isSignUpSuccess ? <></>:
                     <Alert key={1} variant="info">{signUpMessage}</Alert> 
                 }
                
